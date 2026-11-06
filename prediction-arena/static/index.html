@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1420">
+  <title>Prediction Arena · 预测竞技场</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">Prediction Arena<small id="brandSub">ICDM Youth · 二元预测互动</small></div>
+      <div class="lang">
+        <button id="btnZh" class="on" type="button">中文</button>
+        <button id="btnEn" type="button">EN</button>
+      </div>
+    </div>
+    <div class="banner" id="demoBanner">
+      真实市场题库：参考概率取自 Polymarket / Manifold <b>结算前一小时</b>的公开市场快照，来源链接与快照时间见现场审核表。API 展示许可尚待人工确认（方案 §10.3）。<br>
+      Real market bank: benchmarks are pre-resolution snapshots from Polymarket / Manifold; display licensing is pending manual review.
+    </div>
+    <div id="app"><div class="card muted">正在加载…</div></div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

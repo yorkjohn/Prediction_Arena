@@ -1,0 +1,21 @@
+# Runtime data and local-only artefacts (never commit)
+prediction-arena/arena.db
+prediction-arena/*.log
+prediction-arena/qrcode.png
+prediction-arena/_wx_material.html
+_wx_material.html
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Superseded review-table drafts (keep the final 100-question versions)
+题目审核表.xlsx
+题目审核表_筛选版.xlsx
