@@ -4,10 +4,14 @@
 
   const I = {
     zh: {
-      sub: "ICDM Youth · 二元预测互动",
+      sub: "ICDM 2026 沈阳 · 二元预测互动",
       demo: "真实市场题库：参考概率为公开历史数据的事前快照；各平台 API 展示许可仍待人工核实（方案 §10.3）。",
-      homeTitle: "预测不是猜 YES 或 NO",
-      homeBody: "面对一个已经发生、但结果未必为你所知的事件，先给出你有多大把握，再与参考概率比较，最后看结果并用 Brier Score 检验这份把握。",
+      confTag: "青少年互动 Demo",
+      confFoot: "为 ICDM Youth 现场定制的二元预测科普互动",
+      heroKicker: "ICDM 2026 · 沈阳 · 现场互动",
+      confNote: "本互动呼应 ICDM 2026 参展论文《Time-Varying Favorite–Longshot Bias in Polymarket Weather Markets》讨论的概率校准与预测偏差问题。",
+      homeTitle: "回到当时，你会怎么预测？",
+      homeBody: "预测不是猜 YES 或 NO，而是说出你有多大把握。面对已经发生、结果未必为你所知的事件，先给出把握，再与当时的市场概率比较，最后用 Brier Score 检验这份判断。",
       nickname: "给自己起个名字（用于排行榜）",
       nicknamePh: "例如：预测者 A",
       startWarmup: "开始练手（3 题，不计分）",
@@ -33,10 +37,14 @@
       cats: { sports: "体育", esports: "电竞", ai: "AI 与科技", business: "商业与生活", world: "国际与社会" }
     },
     en: {
-      sub: "ICDM Youth · binary forecasting game",
+      sub: "ICDM 2026 Shenyang · binary forecasting game",
       demo: "REAL MARKET BANK: benchmarks are pre-event snapshots from public historical data; display licensing is pending manual review.",
-      homeTitle: "Forecasting is not guessing YES or NO",
-      homeBody: "You see a past event frozen before its outcome. State how confident you are, compare with a reference probability, then reveal the result and score your confidence with the Brier Score.",
+      confTag: "Youth Interactive Demo",
+      confFoot: "A binary-forecasting demo built for the ICDM 2026 Youth session",
+      heroKicker: "ICDM 2026 · SHENYANG · ON-SITE DEMO",
+      confNote: "This demo echoes the calibration and forecast-bias questions in the ICDM 2026 paper 'Time-Varying Favorite–Longshot Bias in Polymarket Weather Markets'.",
+      homeTitle: "What would you predict?",
+      homeBody: "Forecasting is not guessing YES or NO — it is saying how sure you are. You see a past event frozen before its outcome; state your confidence, compare it with the market price at the time, then score it with the Brier Score.",
       nickname: "Pick a name (for the leaderboard)",
       nicknamePh: "e.g. Forecaster A",
       startWarmup: "Warm-up (3 questions, not scored)",
@@ -140,6 +148,11 @@
     $("brandSub").textContent = T().sub;
     $("btnZh").className = S.lang === "zh" ? "on" : "";
     $("btnEn").className = S.lang === "en" ? "on" : "";
+    // Conference identity is bilingual and follows the language toggle.
+    const tag = $("confTag");
+    if (tag) tag.textContent = T().confTag;
+    const foot = $("confFoot");
+    if (foot) foot.textContent = T().confFoot;
   }
 
   // Error must survive re-render, otherwise a Wi-Fi drop looks like a silent freeze.
@@ -151,13 +164,15 @@
   function viewHome() {
     return shell(
       '<div class="card">' +
-        "<h1>" + esc(T().homeTitle) + "</h1>" +
+        '<div class="kicker">' + esc(T().heroKicker) + "</div>" +
+        '<h1 class="conf-h1">' + esc(T().homeTitle) + "</h1>" +
         "<p>" + esc(T().homeBody) + "</p>" +
         '<label class="muted" for="nick">' + esc(T().nickname) + "</label>" +
         '<input id="nick" type="text" maxlength="20" placeholder="' + esc(T().nicknamePh) + '" value="' + esc(S.nickname) + '">' +
         '<button class="btn" type="button" onclick="arena.startWarmup()">' + esc(T().startWarmup) + "</button>" +
         '<button class="btn ghost" type="button" onclick="arena.leaderboard()">' + esc(T().board) + "</button>" +
       "</div>" +
+      '<div class="conf-note"><b>ICDM 2026 · RESEARCH LINK</b><br>' + esc(T().confNote) + "</div>" +
       '<p class="tiny">' + esc(T().leaderHint) + "</p>"
     );
   }

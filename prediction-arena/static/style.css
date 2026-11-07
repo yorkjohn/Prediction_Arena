@@ -238,3 +238,104 @@ body.dash .wrap { max-width: 1000px; }
 .dot.off { background: var(--bad); }
 .bar { height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--accent); }
+
+/* ==========================================================================
+   ICDM 2026 · Shenyang, China — conference identity
+   Offline-safe: pure CSS + inline SVG, no external fonts or images.
+   Palette: poster orange #f28c28 / logo cyan #35c6e8 / booth yellow #ffd54a
+   ========================================================================== */
+:root {
+  --conf-orange: #f28c28;
+  --conf-cyan:   #35c6e8;
+  --conf-yellow: #ffd54a;
+}
+
+.conf-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  margin-bottom: 6px;
+  background: linear-gradient(105deg, #101a2e 0%, #14263f 55%, #10233a 100%);
+  border: 1px solid #2a4163;
+  border-radius: 12px;
+}
+.conf-mark { width: 38px; height: 38px; flex: 0 0 auto; }
+.conf-id { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.conf-id b { font-size: 15px; letter-spacing: 1.4px; color: #f4f8ff; }
+.conf-id small { font-size: 10px; letter-spacing: .6px; color: var(--conf-cyan); }
+.conf-tag {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 700;
+  color: #3a1c00;
+  background: var(--conf-yellow);
+  border-radius: 999px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+.conf-rule {
+  height: 3px;
+  border-radius: 2px;
+  margin: 0 0 14px;
+  background: linear-gradient(90deg, var(--conf-orange), var(--conf-yellow) 45%, var(--conf-cyan));
+}
+
+.conf-foot {
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+.conf-foot b { color: var(--conf-cyan); letter-spacing: 1px; }
+.conf-foot .tiny { display: block; margin-top: 2px; }
+
+.kicker {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--conf-orange);
+  background: #2a1c0e;
+  border: 1px solid #7a4a1d;
+  border-radius: 999px;
+  padding: 2px 9px;
+  margin-bottom: 10px;
+}
+.conf-h1 { color: var(--text); }
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .conf-h1 {
+    background: linear-gradient(92deg, var(--conf-cyan), var(--conf-yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+.conf-note {
+  background: #16243a;
+  border: 1px solid #2a4163;
+  border-left: 3px solid var(--conf-orange);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.conf-note b { color: var(--conf-yellow); letter-spacing: .4px; }
+
+/* Conference accent applied to the existing controls (overrides above) */
+.btn { background: linear-gradient(100deg, var(--conf-cyan), #6ab7ff); }
+.btn.ghost { color: var(--conf-cyan); border-color: #2a5b7a; }
+.btn.secondary { border-color: #2a4163; }
+h3, .qmeta { color: var(--conf-orange); }
+.pval { color: var(--conf-yellow); }
+.define { border-left-color: var(--conf-orange); }
+.progress i.done { background: linear-gradient(90deg, var(--conf-cyan), var(--accent)); }
+.progress i.current { background: var(--conf-orange); }
+.lang button.on { background: linear-gradient(100deg, var(--conf-cyan), #6ab7ff); }
+.bar i { background: linear-gradient(90deg, var(--conf-cyan), var(--accent)); }

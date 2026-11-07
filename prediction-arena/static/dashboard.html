@@ -3,12 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0f1420">
-  <title>Prediction Arena · 组织者看板</title>
+  <meta name="theme-color" content="#0b1220">
+  <title>Prediction Arena · ICDM 2026 组织者看板</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="dash">
   <div class="wrap">
+    <div class="conf-bar">
+      <svg class="conf-mark" viewBox="0 0 44 44" role="img" aria-label="ICDM 2026">
+        <defs>
+          <linearGradient id="icdmGrad" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#1b6fd6"></stop>
+            <stop offset="1" stop-color="#35c6e8"></stop>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="44" height="44" rx="10" fill="#0b1220"></rect>
+        <rect x="8" y="32" width="5" height="7" rx="1" fill="#35c6e8" opacity=".65"></rect>
+        <rect x="16" y="28" width="5" height="11" rx="1" fill="#35c6e8" opacity=".82"></rect>
+        <rect x="24" y="24" width="5" height="15" rx="1" fill="#35c6e8"></rect>
+        <path d="M7 33 L15 25 L22 27 L30 15 L38 10" fill="none" stroke="url(#icdmGrad)"
+              stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="15" cy="25" r="2.2" fill="#ffd54a"></circle>
+        <circle cx="30" cy="15" r="2.2" fill="#ffd54a"></circle>
+      </svg>
+      <span class="conf-id"><b>ICDM 2026</b><small>Shenyang · China</small></span>
+      <span class="conf-tag">Organizer View</span>
+    </div>
+    <div class="conf-rule"></div>
+
     <div class="topbar">
       <div class="brand">Prediction Arena<small>组织者匿名看板 · 每 3 秒刷新</small></div>
       <div id="status" class="muted"><span class="dot off" id="statusDot"></span><span id="statusText">连接中…</span></div>
@@ -36,6 +58,11 @@
     </div>
 
     <p class="tiny" id="updated"></p>
+
+    <footer class="conf-foot">
+      <div><b>ICDM 2026</b> · Shenyang, China · Prediction Arena · Youth Interactive Demo</div>
+      <span class="tiny">仅显示匿名聚合数据 · Northeast Yucai School · Shenyang Aerospace University</span>
+    </footer>
   </div>
   <script src="/static/dashboard.js"></script>
 </body>

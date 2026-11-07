@@ -79,6 +79,21 @@ prediction-arena/
 
 改题库后**必须删 `arena.db`** 才会重新导入；审核表用 `export_review_table.py` 重导。
 
+### 界面主题：ICDM 2026 会议定制
+
+视觉取自会议官方海报与现场展板，**纯 CSS + 内联 SVG，无外部图片 / 字体 / CDN**，断网可用：
+
+| 元素 | 来源 |
+|---|---|
+| 品牌条 `ICDM 2026 · Shenyang, China` + 内联徽标 | 会议海报左上角官方 logo（黑底青蓝、塔形与数据曲线） |
+| 橙色 `#f28c28` | 海报章节标题条 |
+| 青蓝 `#35c6e8` | 会议 logo |
+| 明黄 `#ffd54a` | 现场展板「扫码参与」与口号 |
+| 首页主标题「回到当时，你会怎么预测？」 | 展板原文，中英双语 |
+| 页脚机构署名与研究关联 | 海报作者机构、参展论文题目 |
+
+会议文案集中在 `static/app.js` 的 `I.zh` / `I.en`（`confTag`、`confFoot`、`heroKicker`、`confNote`、`homeTitle`、`homeBody`）；品牌条结构在 `static/index.html` 与 `static/dashboard.html`；配色与组件在 `static/style.css` 末尾的「ICDM 2026 conference identity」段。换年份 / 地点只改这几处，不动游戏逻辑。
+
 ---
 
 ## 3. 现场四步 · 手机到底怎么连
