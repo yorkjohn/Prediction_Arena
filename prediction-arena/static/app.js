@@ -5,7 +5,7 @@
   const I = {
     zh: {
       sub: "ICDM Youth · 二元预测互动",
-      demo: "演示题库：参考概率为示意值，不是真实的历史市场快照；题目也未按方案 3.4 做「结果未知度」筛选。现场使用前需人工核验并替换。",
+      demo: "真实市场题库：参考概率为公开历史数据的事前快照；各平台 API 展示许可仍待人工核实（方案 §10.3）。",
       homeTitle: "预测不是猜 YES 或 NO",
       homeBody: "面对一个已经发生、但结果未必为你所知的事件，先给出你有多大把握，再与参考概率比较，最后看结果并用 Brier Score 检验这份把握。",
       nickname: "给自己起个名字（用于排行榜）",
@@ -34,7 +34,7 @@
     },
     en: {
       sub: "ICDM Youth · binary forecasting game",
-      demo: "DEMO BANK: benchmark probabilities are illustrative placeholders, not real pre-event market snapshots. Questions were not screened for outcome familiarity. Verify and replace before the event.",
+      demo: "REAL MARKET BANK: benchmarks are pre-event snapshots from public historical data; display licensing is pending manual review.",
       homeTitle: "Forecasting is not guessing YES or NO",
       homeBody: "You see a past event frozen before its outcome. State how confident you are, compare with a reference probability, then reveal the result and score your confidence with the Brier Score.",
       nickname: "Pick a name (for the leaderboard)",
@@ -249,7 +249,8 @@
       h += "<tr><td>" + (i + 1) + "</td><td>" +
         '<span class="tag ' + (d.outcome ? "yes" : "no") + '">' + (d.outcome ? T().yes : T().no) + "</span></td>" +
         '<td class="num">' + Math.round(d.p_yes * 100) + "%</td>" +
-        '<td class="num">' + Math.round(d.benchmark_probability * 100) + "%" +
+        '<td class="num">' + (d.benchmark_probability == null
+            ? "—" : Math.round(d.benchmark_probability * 100) + "%") +
           (d.benchmark_verified
             ? ' <span class="tag">' + esc(d.benchmark_source || "market") + "</span>"
             : ' <span class="tag demo">' + esc(T().demoTag) + "</span>") + "</td>" +

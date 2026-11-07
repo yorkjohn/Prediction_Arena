@@ -454,7 +454,8 @@ def session_result(sid: int):
             "title_en": q["title_en"] or q["title_zh"],
             "p_yes": float(pr["p_yes"]),
             "outcome": y,
-            "benchmark_probability": float(q["benchmark_probability"]),
+            "benchmark_probability": None if q["benchmark_probability"] is None
+            else float(q["benchmark_probability"]),
             "benchmark_verified": bool(q["benchmark_verified"]),
             "benchmark_source": q["benchmark_source"],
             "benchmark_snapshot_time": q["benchmark_snapshot_time"],

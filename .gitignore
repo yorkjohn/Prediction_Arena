@@ -1,7 +1,12 @@
 # Runtime data and local-only artefacts (never commit)
 prediction-arena/arena.db
 prediction-arena/*.log
-prediction-arena/qrcode.png
+# QR codes encode the current LAN IP -> regenerate on site, never commit
+# (no slash = matches qrcode*.png at ANY level, incl. copies saved in game/)
+qrcode*.png
+
+# Pre-cleanup safety snapshot (can be deleted once everything checks out)
+_cleanup_backup_*.zip
 prediction-arena/_wx_material.html
 _wx_material.html
 

@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 BANK = ROOT / "seed" / "arena_seed_questions.json"
 OUT_CSV = ROOT.parent / "题目审核表.csv"
-OUT_XLSX = ROOT.parent / "题目审核表_100题.xlsx"
+OUT_XLSX = ROOT.parent / "题目审核表_150题.xlsx"
 
 CAT_ZH = {
     "sports": "体育", "esports": "电竞", "ai": "AI 与科技",

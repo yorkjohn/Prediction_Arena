@@ -626,5 +626,38 @@ for _mid, (_cat, _zh) in _AUTO.items():
     }
 
 
+# ---------------------------------------------------------------------------
+# Third pass (2026-11-07): 50 more curated questions, 10 per category.
+# Wording is produced by expand_bank_more.py -> seed/more_picks.json; every
+# probability / outcome / timestamp / URL still comes from the merged pool.
+# ---------------------------------------------------------------------------
+CANDIDATES = ROOT / "seed" / "candidates_all_v4.json"
+_MORE_PICKS = ROOT / "seed" / "more_picks.json"
+
+if _MORE_PICKS.exists():
+    _pool3 = {
+        m["market_id"]: m
+        for m in json.loads(CANDIDATES.read_text(encoding="utf-8"))["markets"]
+    }
+    _SPORTS_CONTEXT = (
+        "体育赛事的赛前预测市场概率，结果以该市场的结算规则为准。",
+        "Pre-event prediction-market price for a sports fixture.",
+    )
+    for _mid, _meta in json.loads(_MORE_PICKS.read_text(encoding="utf-8")).items():
+        _m = _pool3.get(_mid)
+        if _m is None:
+            raise RuntimeError(f"third-pass market missing from pool: {_mid}")
+        _cz, _ce = _CONTEXT.get(_meta["cat"], _SPORTS_CONTEXT)
+        SELECTED[_mid] = {
+            "cat": _meta["cat"],
+            "title_zh": _meta["title_zh"],
+            "title_en": _meta["title_en"],
+            "context_zh": _cz,
+            "context_en": _ce,
+            "yes_zh": _meta["title_zh"].replace("是否", "").rstrip("？").strip(),
+            "yes_en": "The market resolves YES on this question.",
+        }
+
+
 if __name__ == "__main__":
     raise SystemExit(main())
