@@ -1,5 +1,7 @@
 # Prediction Arena
 
+[English →](README.en.md) · 中文
+
 面向 **ICDM 2026 · Shenyang, China** 现场的二元预测科普互动 Demo。
 
 参与者对已发生的历史事件给出 YES 概率，与真实预测市场的事前快照对照，用 Brier Score 检验自己的判断把握，并理解概率校准。
