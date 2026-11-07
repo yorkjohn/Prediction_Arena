@@ -339,3 +339,52 @@ h3, .qmeta { color: var(--conf-orange); }
 .progress i.current { background: var(--conf-orange); }
 .lang button.on { background: linear-gradient(100deg, var(--conf-cyan), #6ab7ff); }
 .bar i { background: linear-gradient(90deg, var(--conf-cyan), var(--accent)); }
+
+/* ---- table alignment + dashboard extras (2026-11-07) --------------------
+   th.num was left-aligned while td.num was right-aligned, and tables had no
+   fixed column widths, so headers and cells never lined up.                 */
+table { table-layout: fixed; width: 100%; }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+th, td { vertical-align: middle; overflow-wrap: anywhere; }
+.tbl-result th:nth-child(1) { width: 8%; }
+.tbl-result th:nth-child(2) { width: 17%; }
+.tbl-result th:nth-child(3) { width: 20%; }
+.tbl-result th:nth-child(4) { width: 35%; }
+.tbl-result th:nth-child(5) { width: 20%; }
+.tbl-board th:nth-child(1) { width: 10%; }
+.tbl-board th:nth-child(2) { width: 46%; }
+.tbl-board th:nth-child(3) { width: 22%; }
+.tbl-board th:nth-child(4) { width: 22%; }
+.tbl-questions th:nth-child(1) { width: 48%; }
+.tbl-questions th:nth-child(2) { width: 14%; }
+.tbl-questions th:nth-child(3) { width: 16%; }
+.tbl-questions th:nth-child(4) { width: 22%; }
+
+.dash-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.dash-actions .btn {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: 8px 16px;
+  font-size: 13px;
+  text-decoration: none;
+}
+.progress-lg {
+  height: 10px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px 0 6px;
+}
+.progress-lg i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--conf-cyan), var(--conf-yellow));
+}

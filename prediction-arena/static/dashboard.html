@@ -27,41 +27,59 @@
         <circle cx="30" cy="15" r="2.2" fill="#ffd54a"></circle>
       </svg>
       <span class="conf-id"><b>ICDM 2026</b><small>Shenyang · China</small></span>
-      <span class="conf-tag">Organizer View</span>
+      <span class="conf-tag" id="confTag">组织者视图</span>
     </div>
     <div class="conf-rule"></div>
 
     <div class="topbar">
-      <div class="brand">Prediction Arena<small>组织者匿名看板 · 每 3 秒刷新</small></div>
+      <div class="brand">Prediction Arena<small id="brandSub">组织者匿名看板 · 每 3 秒刷新</small></div>
+      <div class="lang">
+        <button id="btnZh" class="on" type="button">中文</button>
+        <button id="btnEn" type="button">EN</button>
+      </div>
+    </div>
+    <div class="banner" id="dashBanner">150 道真实市场题 · 参考概率为公开事前快照；看板只显示匿名聚合数据。</div>
+
+    <div class="dash-actions">
       <div id="status" class="muted"><span class="dot off" id="statusDot"></span><span id="statusText">连接中…</span></div>
+      <a class="btn ghost" id="exportBtn" href="http://127.0.0.1:5000/api/export.csv">导出成绩 CSV（仅本机）</a>
     </div>
-    <div class="banner">
-      真实市场题库（150 道）：参考概率为公开历史数据的事前快照，各平台 API 展示许可待人工核实。看板只显示匿名聚合数据，不显示个人昵称或单人预测。
-    </div>
-    <a class="btn ghost" style="display:inline-block;width:auto;text-decoration:none;padding:8px 16px;font-size:13px;margin-bottom:16px"
-       href="http://127.0.0.1:5000/api/export.csv">导出成绩 CSV（仅组织者本机可下载）</a>
 
     <div class="dash-grid" id="cards"></div>
 
     <div class="card">
-      <h2>各类别参与局数</h2>
+      <h2 id="progressTitle">完成进度</h2>
+      <div id="progress"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="boardTitle">统一排行榜</h2>
+      <p class="muted" id="boardHint">按平均 Brier Score 升序，仅显示完成 5 题的局。</p>
+      <table class="tbl-board">
+        <thead id="boardHead"></thead>
+        <tbody id="boardRows"><tr><td colspan="4" class="muted">暂无完成局数</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2 id="catTitle">各类别参与局数</h2>
       <div id="cat"><span class="muted">暂无数据</span></div>
     </div>
 
     <div class="card">
-      <h2>每道题的匿名平均 YES 概率</h2>
-      <table>
-        <thead><tr><th>题目</th><th class="num">提交人数</th><th class="num">平均 YES 概率</th><th style="width:24%">分布</th></tr></thead>
+      <h2 id="qTitle">每道题的匿名平均 YES 概率</h2>
+      <table class="tbl-questions">
+        <thead id="qHead"></thead>
         <tbody id="rows"><tr><td colspan="4" class="muted">暂无提交</td></tr></tbody>
       </table>
-      <p class="tiny" style="margin-top:14px">只统计真正回答过该题的参与者；不同用户抽到不同题目。</p>
+      <p class="tiny" id="qNote" style="margin-top:14px">只统计真正回答过该题的参与者；不同用户抽到不同题目。</p>
     </div>
 
     <p class="tiny" id="updated"></p>
 
     <footer class="conf-foot">
       <div><b>ICDM 2026</b> · Shenyang, China · Prediction Arena · Youth Interactive Demo</div>
-      <span class="tiny">仅显示匿名聚合数据 · Northeast Yucai School · Shenyang Aerospace University</span>
+      <span class="tiny" id="footNote">仅显示匿名聚合数据 · Northeast Yucai School · Shenyang Aerospace University</span>
     </footer>
   </div>
   <script src="/static/dashboard.js"></script>

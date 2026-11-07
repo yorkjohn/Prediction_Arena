@@ -94,6 +94,16 @@ prediction-arena/
 
 会议文案集中在 `static/app.js` 的 `I.zh` / `I.en`（`confTag`、`confFoot`、`heroKicker`、`confNote`、`homeTitle`、`homeBody`）；品牌条结构在 `static/index.html` 与 `static/dashboard.html`；配色与组件在 `static/style.css` 末尾的「ICDM 2026 conference identity」段。换年份 / 地点只改这几处，不动游戏逻辑。
 
+**顶部披露横幅**是一行短文案，随「中文 / EN」按键切换（`I.*.disclosure`），四家数据源的具体口径与许可说明放在 README 与现场审核表里，不占手机屏幕。
+
+### 表格对齐
+
+所有表格使用 `table-layout: fixed`，并用 `.tbl-result`（5 列）/ `.tbl-board`（4 列）/ `.tbl-questions`（4 列）固定列宽；`th.num` 与 `td.num` 同为右对齐。结果页的来源标签缩写为 `PM / MF / KS / BF`（`shortSource()`），避免长来源名把「参考概率」列撑歪。
+
+### 组织者看板（双语）
+
+`/dashboard` 每 3 秒轮询 `/api/dashboard` 与 `/api/leaderboard`，显示：参与人数 / 已开局数 / 已完成局数 / **总提交数**、完成进度条与群体平均 YES 概率、**统一排行榜**、各类别参与局数、每题匿名平均 YES 概率与分布条。中文 / EN 切换与手机端共用 `localStorage` 的 `arena_lang`，题目名称也随语言切换（后端 `/api/dashboard` 返回 `title_en`）。看板只显示匿名聚合数据；导出 CSV 仍限组织者本机 `127.0.0.1`。
+
 ---
 
 ## 3. 现场四步 · 手机到底怎么连

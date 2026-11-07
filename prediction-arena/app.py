@@ -504,11 +504,13 @@ def dashboard_data():
         {
             "question_id": r["question_id"],
             "title": r["title_zh"],
+            "title_en": r["title_en"] or r["title_zh"],
             "count": r["n"],
             "avg_p": round(float(r["avg_p"]), 4),
         }
         for r in db.execute(
-            """SELECT pr.question_id, q.title_zh, COUNT(*) AS n, AVG(pr.p_yes) AS avg_p
+            """SELECT pr.question_id, q.title_zh, q.title_en,
+                      COUNT(*) AS n, AVG(pr.p_yes) AS avg_p
                FROM predictions pr JOIN questions q ON q.id = pr.question_id
                WHERE q.mode = 'real'
                GROUP BY pr.question_id ORDER BY pr.question_id"""

@@ -6,6 +6,9 @@
     zh: {
       sub: "ICDM 2026 沈阳 · 二元预测互动",
       demo: "真实市场题库：参考概率为公开历史数据的事前快照；各平台 API 展示许可仍待人工核实（方案 §10.3）。",
+      disclosure: "150 道真实市场题 · 参考概率为公开事前快照；来源见审核表，展示许可待核实。",
+      detailTitle: "逐题明细",
+      colResult: "结果", colMine: "我的", colMarket: "市场", colBrier: "Brier", colPlayer: "参与者",
       confTag: "青少年互动 Demo",
       confFoot: "为 ICDM Youth 现场定制的二元预测科普互动",
       heroKicker: "ICDM 2026 · 沈阳 · 现场互动",
@@ -39,6 +42,9 @@
     en: {
       sub: "ICDM 2026 Shenyang · binary forecasting game",
       demo: "REAL MARKET BANK: benchmarks are pre-event snapshots from public historical data; display licensing is pending manual review.",
+      disclosure: "150 real-market questions · public pre-event snapshots; sources in the review sheet, display licensing pending.",
+      detailTitle: "Per-question detail",
+      colResult: "Result", colMine: "Mine", colMarket: "Market", colBrier: "Brier", colPlayer: "Player",
       confTag: "Youth Interactive Demo",
       confFoot: "A binary-forecasting demo built for the ICDM 2026 Youth session",
       heroKicker: "ICDM 2026 · SHENYANG · ON-SITE DEMO",
@@ -142,9 +148,20 @@
     return '<span class="avatar" style="background:' + esc(color || "#6ab7ff") + '">' + esc(ch) + "</span>";
   }
 
+  // Short source labels keep the result-table columns stable and aligned.
+  function shortSource(s) {
+    const t = String(s || "market");
+    if (/Polymarket/i.test(t)) return "PM";
+    if (/Manifold/i.test(t)) return "MF";
+    if (/Kalshi/i.test(t)) return "KS";
+    if (/Betfair|football-data/i.test(t)) return "BF";
+    return t.slice(0, 6);
+  }
+
   function banner() {
-    // Disclosure copy lives in index.html: it describes the real-market bank
-    // and must not be overwritten by language toggles.
+    // Short disclosure that follows the language toggle; the detailed
+    // sourcing / licensing notes live in README and the review sheet.
+    $("demoBanner").textContent = T().disclosure;
     $("brandSub").textContent = T().sub;
     $("btnZh").className = S.lang === "zh" ? "on" : "";
     $("btnEn").className = S.lang === "en" ? "on" : "";
@@ -257,9 +274,11 @@
         '<div class="metric"><b>' + (r.hit_rate == null ? "—" : Math.round(r.hit_rate * 100) + "%") + "</b><span>" + esc(T().hit) + "</span></div>" +
         '<div class="metric"><b>' + (r.rank == null ? "—" : "#" + r.rank) + "</b><span>" + esc(T().rank) + "</span></div>" +
       "</div>" +
-      "<h3>" + esc(T().myPrediction) + " / " + esc(T().real) + " / " + esc(T().ref) + "</h3>" +
-      "<table><thead><tr><th>#</th><th>" + esc(T().real) + "</th><th class=\"num\">" + esc(T().myPrediction) +
-        '</th><th class="num">' + esc(T().ref) + '</th><th class="num">' + esc(T().bs) + "</th></tr></thead><tbody>";
+      "<h3>" + esc(T().detailTitle) + "</h3>" +
+      '<table class="tbl-result"><thead><tr><th>#</th><th>' + esc(T().colResult) +
+        '</th><th class="num">' + esc(T().colMine) +
+        '</th><th class="num">' + esc(T().colMarket) +
+        '</th><th class="num">' + esc(T().colBrier) + "</th></tr></thead><tbody>";
     r.details.forEach((d, i) => {
       h += "<tr><td>" + (i + 1) + "</td><td>" +
         '<span class="tag ' + (d.outcome ? "yes" : "no") + '">' + (d.outcome ? T().yes : T().no) + "</span></td>" +
@@ -267,7 +286,7 @@
         '<td class="num">' + (d.benchmark_probability == null
             ? "—" : Math.round(d.benchmark_probability * 100) + "%") +
           (d.benchmark_verified
-            ? ' <span class="tag">' + esc(d.benchmark_source || "market") + "</span>"
+            ? ' <span class="tag">' + esc(shortSource(d.benchmark_source)) + "</span>"
             : ' <span class="tag demo">' + esc(T().demoTag) + "</span>") + "</td>" +
         '<td class="num">' + d.brier.toFixed(3) + "</td></tr>";
     });
@@ -286,7 +305,7 @@
     if (!rows || !rows.length) {
       h += '<p class="muted">—</p>';
     } else {
-      h += '<table><thead><tr><th>#</th><th>' + (S.lang === "zh" ? "参与者" : "Player") +
+      h += '<table class="tbl-board"><thead><tr><th>#</th><th>' + esc(T().colPlayer) +
         '</th><th class="num">Brier</th><th class="num">Hit</th></tr></thead><tbody>';
       rows.forEach((b) => {
         h += '<tr class="' + (b.session_id === S.sessionId ? "me" : "") + '"><td>' + b.rank + "</td><td>" +
